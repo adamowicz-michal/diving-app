@@ -1,7 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, View, ImageBackground } from 'react-native';
+import MainScreen from './screens/MainScreen';
 
 export default function App() {
+  let screen = <MainScreen />;
+
   return (
     <ImageBackground
       source={require('./assets/images/background.png')}
@@ -11,7 +14,7 @@ export default function App() {
     >
       <StatusBar style="light" />
       <View style={styles.container}>
-        <Text>Diving App</Text>
+        {screen}
       </View>
     </ImageBackground>
   );
