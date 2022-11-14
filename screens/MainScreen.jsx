@@ -1,12 +1,14 @@
 import { StyleSheet, View, Text } from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 
-function MainScreen() {
+function MainScreen({ showCalculateMODScreen }) {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>DIVING APP</Text>
 
-      <PrimaryButton>Check MOD</PrimaryButton>
+      <PrimaryButton onPress={showCalculateMODScreen}>
+        Calculate MOD
+      </PrimaryButton>
     </View>
   );
 }

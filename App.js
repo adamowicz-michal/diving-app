@@ -1,9 +1,19 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, ImageBackground } from 'react-native';
 import MainScreen from './screens/MainScreen';
+import CalculateMODScreen from './screens/CalculateMODScreen';
 
 export default function App() {
-  let screen = <MainScreen />;
+  const [currentScreen, setCurrentScreen] = useState(<MainScreen showCalculateMODScreen={showCalculateMODScreen} />);
+
+  function showMainScreen() {
+    setCurrentScreen(<MainScreen showCalculateMODScreen={showCalculateMODScreen} />);
+  }
+
+  function showCalculateMODScreen() {
+    setCurrentScreen(<CalculateMODScreen showMainScreen={showMainScreen} />);
+  }
 
   return (
     <ImageBackground
@@ -14,7 +24,7 @@ export default function App() {
     >
       <StatusBar style="light" />
       <View style={styles.container}>
-        {screen}
+        {currentScreen}
       </View>
     </ImageBackground>
   );
