@@ -78,8 +78,15 @@ function CalculateMODScreen({ showMainScreen }) {
 
       {MOD && EAD && (
         <View>
-          <Text style={styles.output}>MOD: {MOD}m</Text>
-          <Text style={styles.output}>EAD: {EAD}m</Text>
+          <View style={styles.outputContainer}>
+            <Text style={styles.output}>MOD:</Text>
+            <Text style={styles.output}>{MOD}m</Text>
+          </View>
+
+          <View style={styles.outputContainer}>
+            <Text style={styles.output}>EAD:</Text>
+            <Text style={styles.output}>{EAD}m</Text>
+          </View>
         </View>
       )}
     </View>
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '80%',
+    width: 300,
     marginBottom: 20,
     padding: 6,
     backgroundColor: '#fff',
@@ -144,8 +151,15 @@ const styles = StyleSheet.create({
   calcButton: {
     marginBottom: 30,
   },
-  output: {
+  outputContainer: {
+    width: 200,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: '#333',
+  },
+  output: {
     fontSize: 26,
   },
 });
