@@ -8,12 +8,13 @@ function CalculateMODScreen({ showMainScreen }) {
   const [selectedFO, setSelectedFO] = useState('21');
   const [selectedPPO, setSelectedPPO] = useState('1.2');
   const [MOD, setMOD] = useState();
+  const [EAD, setEAD] = useState();
 
   function handleTextChange(updatedText) {
     setSelectedFO(updatedText);
   }
 
-  function calculateMOD() {
+  async function calculateMOD() {
     const chosenFO = parseInt(selectedFO);
     const chosenPPO = parseFloat(selectedPPO);
 
@@ -24,13 +25,19 @@ function CalculateMODScreen({ showMainScreen }) {
       return;
     }
 
-    setMOD(() => Math.floor((10 * chosenPPO) / (chosenFO / 100) - 10));
+    const newMOD = Math.floor((10 * chosenPPO) / (chosenFO / 100) - 10);
+    setMOD(newMOD);
+
+    const newEad = Math.floor(
+      ((1 - chosenFO / 100) / 0.79) * (newMOD + 10) - 10
+    );
+    setEAD(newEad);
   }
 
   return (
     <View style={styles.screenContainer}>
       <ReturnButton onPress={showMainScreen} />
-      <Text>Calculate MOD</Text>
+      <Text style={styles.description}>Calculate MOD</Text>
 
       <View style={styles.inputContainer}>
         <Text style={styles.inputText}>FO&#8322; - (21% - 40%)</Text>
@@ -65,11 +72,16 @@ function CalculateMODScreen({ showMainScreen }) {
         </View>
       </View>
 
-      <PrimaryButton onPress={calculateMOD}>Calculate</PrimaryButton>
-
-      <View>
-        <Text>MOD: {MOD}m</Text>
+      <View style={styles.calcButton}>
+        <PrimaryButton onPress={calculateMOD}>Calculate</PrimaryButton>
       </View>
+
+      {MOD && EAD && (
+        <View>
+          <Text style={styles.output}>MOD: {MOD}m</Text>
+          <Text style={styles.output}>EAD: {EAD}m</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -84,6 +96,10 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingHorizontal: 10,
     backgroundColor: 'rgba(255, 255, 255, 0.75)',
+  },
+  description: {
+    marginBottom: 8,
+    fontSize: 18,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -124,6 +140,13 @@ const styles = StyleSheet.create({
   },
   pickerItem: {
     fontSize: 16,
+  },
+  calcButton: {
+    marginBottom: 30,
+  },
+  output: {
+    marginBottom: 14,
+    fontSize: 26,
   },
 });
 

@@ -17,15 +17,20 @@ function ReturnButton({ onPress }) {
 const styles = StyleSheet.create({
   buttonOuterContainer: {
     alignSelf: 'flex-start',
-    width: 40,
-    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
+    width: 40,
+    height: 40,
     borderColor: '#333',
     borderWidth: 1,
     borderRadius: 20,
   },
-  buttonInnerContainer: {},
+  buttonInnerContainer: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   buttonText: {
     color: '#333',
     fontSize: 20,
