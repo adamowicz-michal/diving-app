@@ -21,13 +21,13 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#000',
-    borderWidth: 2,
+    borderColor: '#333',
+    borderWidth: 1,
     borderRadius: 20,
   },
   buttonInnerContainer: {},
   buttonText: {
-    color: '#000',
+    color: '#333',
     fontSize: 20,
   },
 });
